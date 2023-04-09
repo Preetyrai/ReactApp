@@ -155,7 +155,13 @@ p {
     transform: rotate(360deg);
   }
 }
-
+p{
+  font-size: 1rem;
+  margin-bottom: 0px;
+    line-height: 1.8;
+    font-weight: 400;
+    letter-spacing: initial;
+}
 .loading {
   width: 6rem;
   height: 6rem;
