@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Routes } from "react-router-dom";
 import { Navbar, Sidebar, Footer } from "./components";
 import Product from "./components/Product";
 import {
@@ -16,33 +16,30 @@ import ProductsPage from "./pages/ProductsPage";
 
 function App() {
   return (
-    <AuthWrapper>
-    <Router>
-      <Navbar />
-      <Sidebar />
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route exact path="/about">
-          <About />
-        </Route>
-        <Route exact path="/products">
-          <ProductsPage />
-        </Route>
-        <Route exact path="/products/:id" children={<SingleProduct />} />
-        <PrivateRoute exact path="/checkout">
-          <Checkout />
-        </PrivateRoute>
-        <Route exact path="/Cart">
-          <Cart />
-        </Route>
-        <Route exact path="*">
-          <ErrorPage />
-        </Route>
-      </Switch>
-      <Footer />
-    </Router>
+    <AuthWrapper> 
+      <Router>
+        <Navbar />
+        <Sidebar />
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<SingleProduct />} />
+          <Route
+            path="/checkout"
+            element={
+              <PrivateRoute>
+                <Checkout />
+              </PrivateRoute>
+            }
+          />
+          
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+
+        <Footer />
+      </Router>
     </AuthWrapper>
   );
 }

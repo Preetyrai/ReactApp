@@ -19,7 +19,7 @@ const promise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`)
 const CheckoutForm = () => {
   const { cart, total_amount, shipping_fee, clearCart } = useCartContext();
   const { myUser } = useUserContext();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
@@ -36,7 +36,7 @@ const CheckoutForm = () => {
 
         JSON.stringify({ cart, shipping_fee, total_amount })
       );
-      console.log(data.clientSecret);
+      console.log("clientSecret" + data.clientSecret);
       console.log(data);
       setClientSecret(data.clientSecret);
     } catch (error) {
@@ -88,9 +88,9 @@ const CheckoutForm = () => {
       setSucceeded(true);
       setTimeout(() => {
         clearCart();
-        // navigate('/');
+         navigate('/');
         // <Navigate to="/" />
-        <Redirect to="/" />
+        // <Redirect to="/" />
       }, 10000);
     }
   };
